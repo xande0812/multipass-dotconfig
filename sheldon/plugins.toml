@@ -12,20 +12,11 @@
 
 shell = "zsh"
 
-[plugins]
-
 [plugins.zsh-defer]
 github = 'romkatv/zsh-defer'
-apply = ['source']
 
 [templates]
-defer = { value = 'zsh-defer source "{{ file }}"', each = true }
-
-[plugins.compinit]
-inline = 'autoload -Uz compinit && zsh-defer compinit'
-
-[plugins.colors]
-inline = 'autoload -Uz colors && zsh-defer colors'
+defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
 
 [plugins.zsh-autosuggestions]
 github = 'zsh-users/zsh-autosuggestions'
